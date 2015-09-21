@@ -9,13 +9,12 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.letsball.model.UserEntity;
+import com.letsball.entity.TUser;
 import com.letsball.service.IUserService;
 
 /**
@@ -27,11 +26,20 @@ public class UserController{
 	@Resource
 	private IUserService userService;
 	
-	@ResponseBody
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public Map<String,Object> login( UserEntity user){
+	/*@ResponseBody
+	@RequestMapping(value="/login2", method = RequestMethod.POST)
+	public Map<String,Object> login2( UserEntity user){
 		Map<String,Object> map = new HashMap<String,Object>();
 		System.out.println(user.toString());
+		boolean loginResult = userService.isExist(user);
+		map.put("loginResult", loginResult);
+		return map;
+	}*/
+	
+	@ResponseBody
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public Map<String,Object> login( TUser user){
+		Map<String,Object> map = new HashMap<String,Object>();
 		boolean loginResult = userService.isExist(user);
 		map.put("loginResult", loginResult);
 		return map;
