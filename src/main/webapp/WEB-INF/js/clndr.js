@@ -81,7 +81,8 @@
     showAdjacentMonths: true,
     adjacentDaysChangeMonth: false,
     ready: null,
-    constraints: null
+    constraints: null,
+    thisDates:[]
   };
 
   // The actual plugin constructor
@@ -271,8 +272,12 @@
     var numOfDays = date.daysInMonth();
     for(var i = 1; i <= numOfDays; i++) {
       var day = moment([currentMonth.year(), currentMonth.month(), i]);
-      daysArray.push(this.createDayObject(day, this.eventsThisMonth) )
+      daysArray.push(this.createDayObject(day, this.eventsThisMonth,this.options.thisDates) )
     }
+    
+    
+   
+    
 
     // ...and if there are any trailing blank boxes, fill those in
     // with the next month first days
@@ -294,7 +299,7 @@
     return daysArray;
   };
 
-  Clndr.prototype.createDayObject = function(day, monthEvents) {
+  Clndr.prototype.createDayObject = function(day, monthEvents,dateList) {
     var eventsToday = [];
     var now = moment();
     var self = this;
@@ -325,6 +330,15 @@
     if(now.format("YYYY-MM-DD") == day.format("YYYY-MM-DD")) {
        extraClasses += " today";
     }
+    
+    if(dateList!=undefined &&dateList.length!=0){
+    	for(var i=0,l=dateList.length;i<l;i++) {
+    		if(day.format("YYYY-MM-DD")==dateList[i]&&extraClasses.indexOf("today")==-1){
+    			 extraClasses += " today";
+    		}
+    	}
+    }
+    
     if(day.isBefore(now, 'day')) {
       extraClasses += " past";
     }
@@ -365,7 +379,7 @@
     // using multiple calendars on a page we are technically violating the
     // uniqueness of IDs.
     extraClasses += " calendar-day-" + day.format("YYYY-MM-DD");
-
+    
     return this.calendarDay({
       day: day.date(),
       classes: this.options.targets.day + extraClasses,
@@ -518,7 +532,7 @@
       } else {
         target.date = null;
       }
-
+      
       // do we have events?
       if(this.options.events) {
         // are any of the events happening today?
