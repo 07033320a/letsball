@@ -1,12 +1,14 @@
 $(function() {
-	$("#loginBtn").click(function() {
+	$("#loginBtn").click(function(e) {
+		e.preventDefault();
 		console.log("login");
 		var username = $("input[name=username]").val();
 		var password = hex_md5($("input[name=password]").val());
 		var user = {
-			"username" : username,
-			"password" : password
+			"uname" : username,
+			"upassword" : password
 		};
+		console.log(user);
 		$.ajax({
 			type : "post",
 			dataType : "json",
@@ -21,7 +23,7 @@ $(function() {
 				if (false == data.loginResult) {
 					alert("用户名或者密码错误，请重新登录！");
 				} else if (true == data.loginResult) {
-					alert("登录成功！");
+//					alert("登录成功！");
 					var indexUrl = window.location.protocol+"//"+window.location.host+window.location.pathname+"html/index.html";
 					window.location = indexUrl;
 				}

@@ -3,11 +3,11 @@
  */
 package com.letsball.service;
 
-import com.letsball.model.UserEntity;
+import com.letsball.entity.TUser;
 
 /**
  * @author letsball
  */
 public interface IUserService {
-	public boolean isExist(UserEntity user);
+	public boolean isExist(TUser user);
 }

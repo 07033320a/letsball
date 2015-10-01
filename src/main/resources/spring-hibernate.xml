@@ -78,6 +78,17 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
+	<!-- MyBatis映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations" value="classpath*:com/letsball/*sqlMaps/*/*.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- MyBatis mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.letsball.dao" />
+	</bean>
+
 	<!-- 注解方式配置事物 -->
 	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
 
