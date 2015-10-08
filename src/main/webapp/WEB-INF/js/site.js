@@ -12,10 +12,9 @@ $(document).ready( function() {
   var thisMonth = moment().format('YYYY-MM');
   
   var eventArray = [
-    { startDate: thisMonth + '-10', endDate: thisMonth + '-14', title: 'Multi-Day Event' },
-    { startDate: thisMonth + '-21', endDate: thisMonth + '-23', title: 'Another Multi-Day Event' }
+    { date: moment().format('YYYY-MM-') + '07', title: 'This is an Event' }
   ];
-
+  
   // the order of the click handlers is predictable.
   // direct click action callbacks come first: click, nextMonth, previousMonth, nextYear, previousYear, or today.
   // then onMonthChange (if the month changed).
