@@ -368,8 +368,8 @@
 		if (dateList != undefined && dateList.length != 0) {
 			for (var i = 0, l = dateList.length; i < l; i++) {
 				if (day.format("YYYY-MM-DD") == dateList[i]
-						&& extraClasses.indexOf("today") == -1) {
-					extraClasses += " today";
+						&& extraClasses.indexOf("matchDay") == -1) {
+					extraClasses += " matchDay";
 				}
 			}
 		}
@@ -925,6 +925,8 @@
 			// stuff a _clndrDateObject in each event, which really, REALLY should not be
 			// overriding any existing object... Man that would be weird.
 			events[i]._clndrDateObject = moment(events[i][self.options.dateParameter]);
+		      events[i]._clndrStartDateObject = moment( events[i][self.options.dateParameter] );
+		      events[i]._clndrEndDateObject = moment( events[i][self.options.dateParameter] );
 		}
 		return events;
 	}
