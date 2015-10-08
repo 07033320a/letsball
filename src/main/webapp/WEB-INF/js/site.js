@@ -28,7 +28,6 @@ $(document).ready( function() {
     // },
     clickEvents: {
       click: function(target) {
-        console.log(target);
         if($(target.element).hasClass('inactive')) {
           console.log('not a valid datepicker date.');
         } else {
@@ -60,7 +59,7 @@ $(document).ready( function() {
     },
     showAdjacentMonths: true,
     adjacentDaysChangeMonth: false,
-    thisDates:["2015-09-01","2015-09-04","2015-09-11",]
+    thisDates:["2015-10-01","2015-10-04","2015-10-11",]
   });
 
 //   calendars.clndr2 = $('.cal2').clndr({
