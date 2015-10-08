@@ -99,6 +99,7 @@
 }
 
 .cal1 .clndr .clndr-table tr .day {
+	clear:both;
 	width: 100%;
 	height: inherit;
 	color: #A6A6A6;
@@ -119,7 +120,7 @@
 }
 
 .cal1 .clndr .clndr-table tr .day.matchDay {
-	background: rgb(6, 217, 149);
+	background: rgb(88, 205, 223);
 	color: #FFF;
 	position: relative;
 }
