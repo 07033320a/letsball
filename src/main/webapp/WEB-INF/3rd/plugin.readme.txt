@@ -1,0 +1,45 @@
+1.atrTemplate
+说明：快速生成DOM组件
+网址：https://github.com/aui/artTemplate
+
+2.datepicker
+说明：日期组件
+网址：https://github.com/tenbamboo/bootstrap-datetimepicker-independent-bootstrap
+
+3.font-awesome
+说明：图标组件
+网址：https://github.com/FortAwesome/Font-Awesome
+
+4.highCharts
+说明：图表组件
+网址：http://www.highcharts.com
+备注：如果访问不了请先在git上下载（https://github.com/justjavac/ReplaceGoogleCDN）并在本地配置，即可访问。
+
+5.jqGrid
+说明：表格组件
+网址：https://github.com/tonytomov/jqGrid
+
+6.jquery
+说明：JavaScript Library
+网址：https://github.com/jquery/jquery
+
+7.jquery-ui
+说明：jquery ui库
+网址：https://github.com/jquery/jquery-ui
+
+8.mCustomScrollbar
+说明：美化滚动条插件
+网址：http://manos.malihu.gr/jquery-custom-content-scroller
+	https://github.com/astula/mCustomScrollbar
+	
+9.grumble
+说明：提示气泡
+网址：https://github.com/jamescryer/grumble.js
+
+10.jquery.resize
+说明：resize 事件扩展
+网址：https://github.com/cowboy/jquery-resize
+
+11.jquery.slider
+说明：图片轮播插件
+网址：https://github.com/viljamis/ResponsiveSlides.js
