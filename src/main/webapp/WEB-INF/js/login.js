@@ -8,7 +8,6 @@ $(function() {
 			"uname" : username,
 			"upassword" : password
 		};
-		console.log(user);
 		$.ajax({
 			type : "post",
 			dataType : "json",
