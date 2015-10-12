@@ -36,4 +36,12 @@ public class TeamManageController {
 		return resultMap;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/getTeamInfo", method = RequestMethod.POST)
+	public Map<String, Object> getTeamInfo(String tid) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", iTeamManageSvc.getTeamInfo(tid));
+		return resultMap;
+	}
+
 }

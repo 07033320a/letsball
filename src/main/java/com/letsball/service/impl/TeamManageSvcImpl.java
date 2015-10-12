@@ -8,6 +8,9 @@
  */
 package com.letsball.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +21,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.letsball.dao.TTeamFootballMapper;
+import com.letsball.dao.TTeamFootballMemberMapper;
 import com.letsball.entity.TTeamFootball;
 import com.letsball.entity.TTeamFootballExample;
+import com.letsball.entity.TTeamFootballMemberExample;
 import com.letsball.service.ITeamManageSvc;
+import com.letsball.utils.DataUtils;
+import com.letsball.utils.DateUtils;
+import com.letsball.utils.ValueUtil;
 
 /**
  * @ClassName: TeamManageSvcImpl
@@ -39,6 +47,8 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 
 	@Resource
 	private TTeamFootballMapper teamFootballMapper;
+	@Resource
+	private TTeamFootballMemberMapper teamFootballMemberMapper;
 
 	/**
 	 * (重写方法功能描述)获取球队List
@@ -48,12 +58,39 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 	 * @see com.letsball.service.ITeamManageSvc#getTeamList(java.util.Map)
 	 */
 	@Override
-	public List<TTeamFootball> getTeamList(Map<String, String> map) {
+	public List<Map<String, Object>> getTeamList(Map<String, String> map) {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		TTeamFootballExample teamFootballExample = new TTeamFootballExample();
-		teamFootballExample.createCriteria().andDelsignEqualTo(new Short("0"));
-		List<TTeamFootball> tTeamFootballs = teamFootballMapper.selectByExample(teamFootballExample);
-		System.out.println(tTeamFootballs);
-		return tTeamFootballs;
+		teamFootballExample.createCriteria().andDelsignEqualTo(
+				GlobalConst.DEL_SIGN);
+		List<TTeamFootball> tTeamFootballs = teamFootballMapper
+				.selectByExample(teamFootballExample);
+		if (ValueUtil.valNotNullAndEmpty(tTeamFootballs)) {
+			for (TTeamFootball TTeamFootball : tTeamFootballs) {
+				resultMap = DataUtils.transBean2Map(TTeamFootball);
+				Long tid = TTeamFootball.getTid();
+				TTeamFootballMemberExample teamFootballMemberExample = new TTeamFootballMemberExample();
+				teamFootballMemberExample.createCriteria()
+						.andDelsignEqualTo(GlobalConst.DEL_SIGN)
+						.andTIdEqualTo(tid);
+				int totalMember = teamFootballMemberMapper
+						.countByExample(teamFootballMemberExample);
+				resultMap.put("teamCreateDate", DateUtils.format(
+						TTeamFootball.getTeamCreateDate(),
+						DateUtils.FORMAT_SHORT_CN));
+				resultMap.put("totalMember", totalMember);
+				list.add(resultMap);
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public TTeamFootball getTeamInfo(String tID) {
+		TTeamFootball teamFootball = teamFootballMapper.selectByPrimaryKey(Long
+				.valueOf(tID));
+		return teamFootball;
 	}
 
 }

@@ -28,5 +28,13 @@ public interface ITeamManageSvc {
 	 * @param map
 	 * @return
 	 */
-	public List<TTeamFootball> getTeamList(Map<String, String> map);
+	public List<Map<String, Object>> getTeamList(Map<String, String> map);
+
+	/**
+	 * 获取球队信息
+	 * 
+	 * @param tID
+	 * @return
+	 */
+	public TTeamFootball getTeamInfo(String tID);
 }

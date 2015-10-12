@@ -1,5 +1,9 @@
-$(document).ready(function () {
-	console.log("bbb");
+
+/** 域对象 START */
+var TEAM_MANAGE = {};
+/** 域对象 END */
+
+TEAM_MANAGE.getTeamList = function() {
 	$.ajax({
 		type : "post",
 		dataType : "json",
@@ -12,11 +16,36 @@ $(document).ready(function () {
 		success : function(data) {
 			var html = template('table_tr_template', data);
 			$("#example tbody").html(html);
-			console.log(data.result);
 			initDataTable("example");
 		},
 		error : function() {
 			alert("服务器发生故障，请尝试重新登录！");
 		}
 	});
+};
+
+TEAM_MANAGE.setTeamInfo = function(tid) {
+	$("#tableTitle h3").html("球队管理&gt;&gt;球队信息");
+	var param = {
+			"tid" : tid
+		};
+		$.ajax({
+			type : "post",
+			data : param,
+			dataType : "json",
+			contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+			url : "/letsball/teamManage/getTeamInfo",
+			async : false,
+			success : function(data) {
+				var html = template('div_teamInfo_template', data);
+				$("#main_content").html(html);
+			},
+			error : function() {
+				alert("服务器发生故障，请尝试重新登录！");
+			}
+		});
+	};
+
+$(document).ready(function () {
+	TEAM_MANAGE.getTeamList();
 });
