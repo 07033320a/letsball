@@ -10,7 +10,9 @@ $(document).ready(function () {
 		// 只有test.jsp执行结束后，才可以执行其它操作。
 		async : false,
 		success : function(data) {
-			console.log(data);
+			var html = template('table_tr_template', data);
+			$("#example tbody").html(html);
+			console.log(data.result);
 			initDataTable("example");
 		},
 		error : function() {

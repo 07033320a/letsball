@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.letsball.dao.TTeamFootballMapper;
 import com.letsball.entity.TTeamFootball;
+import com.letsball.entity.TTeamFootballExample;
 import com.letsball.service.ITeamManageSvc;
 
 /**
@@ -48,7 +49,9 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 	 */
 	@Override
 	public List<TTeamFootball> getTeamList(Map<String, String> map) {
-		List<TTeamFootball> tTeamFootballs = teamFootballMapper.selectByExample(null);
+		TTeamFootballExample teamFootballExample = new TTeamFootballExample();
+		teamFootballExample.createCriteria().andDelsignEqualTo(new Short("0"));
+		List<TTeamFootball> tTeamFootballs = teamFootballMapper.selectByExample(teamFootballExample);
 		System.out.println(tTeamFootballs);
 		return tTeamFootballs;
 	}
