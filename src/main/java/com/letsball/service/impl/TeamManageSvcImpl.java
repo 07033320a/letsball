@@ -67,9 +67,7 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 			for (TTeamFootball TTeamFootball : tTeamFootballs) {
 				resultMap = DataUtils.transBean2Map(TTeamFootball);
 				int tid = TTeamFootball.getTid();
-				TTeamFootballMemberExample teamFootballMemberExample = new TTeamFootballMemberExample();
-				teamFootballMemberExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN).andTIdEqualTo(tid);
-				int totalMember = teamFootballMemberMapper.countByExample(teamFootballMemberExample);
+				int totalMember = getTeamMemberNum(tid);
 				resultMap.put("teamCreateDate",
 						DateUtils.format(TTeamFootball.getTeamCreateDate(), DateUtils.FORMAT_SHORT_CN));
 				resultMap.put("totalMember", totalMember);
@@ -79,10 +77,26 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 		return list;
 	}
 
+	/**
+	 * 获取球队人数
+	 *
+	 * @param tid
+	 * @return
+	 */
+	private int getTeamMemberNum(int tid) {
+		TTeamFootballMemberExample teamFootballMemberExample = new TTeamFootballMemberExample();
+		teamFootballMemberExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN).andTIdEqualTo(tid);
+		int totalMember = teamFootballMemberMapper.countByExample(teamFootballMemberExample);
+		return totalMember;
+	}
+
 	@Override
-	public TTeamFootball getTeamInfo(String tID) {
+	public Map<String, Object> getTeamInfo(String tID) {
 		TTeamFootball teamFootball = teamFootballMapper.selectByPrimaryKey(Integer.valueOf(tID));
-		return teamFootball;
+		Map<String, Object> map = DataUtils.transBean2Map(teamFootball);
+		int totalMember = getTeamMemberNum(Integer.valueOf(tID));
+		map.put("totalMember", totalMember);
+		return map;
 	}
 
 }
