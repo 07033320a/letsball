@@ -7,7 +7,6 @@ LOAD.message = "";
 
 /** 加载HTML */
 LOAD.loadHTML = function(parent, htmlName) {
-	console.log(parent, htmlName);
 	if(parent == null || parent == undefined) {
 		parent = "page-wrapper";
 	}
