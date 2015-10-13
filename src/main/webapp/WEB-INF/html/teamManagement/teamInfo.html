@@ -6,23 +6,27 @@
 
 </div>
 <script id="div_teamInfo_template" type="text/html">
-<div class="label_div">
-	<label for="teamName" class="col-sm-2 control-label">球队名称：</label>
-	<div class="col-sm-8">
-		{{result.teamName}}
+<div class="col-md-6 widget_1_box2">
+	<div class="wid_blog">	
+		<div class="label_div">
+			<label for="teamName" class="col-sm-2 control-label">球队名称：</label>
+			<div class="col-sm-8">
+				{{result.teamName}}
+			</div>
+		</div>
+		<div class="label_div">
+			<label for="teamMemberNum" class="col-sm-2 control-label">球队人数：</label>
+			<div class="col-sm-8">
+				{{result.totalMember}} 人
+			</div>
+		</div>
+		<div class="label_div">
+			<label for="teamPoints" class="col-sm-2 control-label">球队积分：</label>
+			<div class="col-sm-8">
+				{{result.teamPoints}} 分
+			</div>
+		</div>
 	</div>
-</div>
-<div class="label_div">
-	<label for="teamMemberNum" class="col-sm-2 control-label">球队人数：</label>
-	<div class="col-sm-8">
-		{{result.totalMember}} 人
-	</div>
-</div>
-<div class="label_div">
-	<label for="teamPoints" class="col-sm-2 control-label">球队积分：</label>
-	<div class="col-sm-8">
-		{{result.teamPoints}} 分
-	</div>
-</div>
+</div>		
 </script>
 <script src="../js/teamManage/teamInfo.js"></script>
