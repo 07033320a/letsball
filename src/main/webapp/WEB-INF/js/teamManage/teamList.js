@@ -24,28 +24,6 @@ TEAM_MANAGE.getTeamList = function() {
 	});
 };
 
-TEAM_MANAGE.setTeamInfo = function(tid) {
-	$("#tableTitle h3").html("球队管理&gt;&gt;球队信息");
-	var param = {
-			"tid" : tid
-		};
-		$.ajax({
-			type : "post",
-			data : param,
-			dataType : "json",
-			contentType : "application/x-www-form-urlencoded;charset=UTF-8",
-			url : "/letsball/teamManage/getTeamInfo",
-			async : false,
-			success : function(data) {
-				var html = template('div_teamInfo_template', data);
-				$("#main_content").html(html);
-			},
-			error : function() {
-				alert("服务器发生故障，请尝试重新登录！");
-			}
-		});
-	};
-
 $(document).ready(function () {
 	TEAM_MANAGE.getTeamList();
 });
