@@ -1870,7 +1870,10 @@ label.round {
 }
 .wid_blog{
 	background:rgb(6, 217, 149);
-	padding:3em 2em;
+	padding-top: 3em;
+	padding-right: 2em;
+	padding-bottom: 8em;
+    padding-left: 2em;
 }
 .wid_blog h1{
   color: #fff;
