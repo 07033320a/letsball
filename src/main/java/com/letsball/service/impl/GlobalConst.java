@@ -8,5 +8,5 @@ package com.letsball.service.impl;
  */
 public class GlobalConst {
 
-	public static final Short DEL_SIGN = new Short("0");
+	public static final int DEL_SIGN = 0;
 }

@@ -10,7 +10,7 @@
 
 	<classPathEntry
 		location="D:\Develop Tool\maven-repository\repository\mysql\mysql-connector-java\5.1.21\mysql-connector-java-5.1.21.jar" />
-
+	<!-- 一个数据库一个context -->
 	<context id="LETSBALL" targetRuntime="MyBatis3">
 		<!--xml文件是否是覆盖还是合并 -->
 		<property name="sqlMapXmlMergeable" value="false" />
@@ -47,8 +47,11 @@
 			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" /> -->
 		</table>
 
-		<table schema="letsball" tableName="T_MATCH_FOOTBALL" domainObjectName="TMatchFootball"></table>
-		<table schema="letsball" tableName="T_TEAM_FOOTBALL" domainObjectName="TTeamFootball"></table>
+		<table tableName="t_dictionary" domainObjectName="TDictionary"></table>
+		<table tableName="T_MATCH_FOOTBALL" domainObjectName="TMatchFootball"></table>
+		<table tableName="T_TEAM_FOOTBALL" domainObjectName="TTeamFootball"></table>
+		<table tableName="t_team_football_member" domainObjectName="TTeamFootballMember"></table>
+		<table tableName="t_match_football_member" domainObjectName="TMatchFootballMember"></table>
 
 	</context>
 </generatorConfiguration>

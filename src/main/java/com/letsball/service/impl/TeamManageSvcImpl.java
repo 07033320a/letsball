@@ -61,23 +61,17 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		TTeamFootballExample teamFootballExample = new TTeamFootballExample();
-		teamFootballExample.createCriteria().andDelsignEqualTo(
-				GlobalConst.DEL_SIGN);
-		List<TTeamFootball> tTeamFootballs = teamFootballMapper
-				.selectByExample(teamFootballExample);
+		teamFootballExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN);
+		List<TTeamFootball> tTeamFootballs = teamFootballMapper.selectByExample(teamFootballExample);
 		if (ValueUtil.valNotNullAndEmpty(tTeamFootballs)) {
 			for (TTeamFootball TTeamFootball : tTeamFootballs) {
 				resultMap = DataUtils.transBean2Map(TTeamFootball);
-				Long tid = TTeamFootball.getTid();
+				int tid = TTeamFootball.getTid();
 				TTeamFootballMemberExample teamFootballMemberExample = new TTeamFootballMemberExample();
-				teamFootballMemberExample.createCriteria()
-						.andDelsignEqualTo(GlobalConst.DEL_SIGN)
-						.andTIdEqualTo(tid);
-				int totalMember = teamFootballMemberMapper
-						.countByExample(teamFootballMemberExample);
-				resultMap.put("teamCreateDate", DateUtils.format(
-						TTeamFootball.getTeamCreateDate(),
-						DateUtils.FORMAT_SHORT_CN));
+				teamFootballMemberExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN).andTIdEqualTo(tid);
+				int totalMember = teamFootballMemberMapper.countByExample(teamFootballMemberExample);
+				resultMap.put("teamCreateDate",
+						DateUtils.format(TTeamFootball.getTeamCreateDate(), DateUtils.FORMAT_SHORT_CN));
 				resultMap.put("totalMember", totalMember);
 				list.add(resultMap);
 			}
@@ -87,8 +81,7 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 
 	@Override
 	public TTeamFootball getTeamInfo(String tID) {
-		TTeamFootball teamFootball = teamFootballMapper.selectByPrimaryKey(Long
-				.valueOf(tID));
+		TTeamFootball teamFootball = teamFootballMapper.selectByPrimaryKey(Integer.valueOf(tID));
 		return teamFootball;
 	}
 
