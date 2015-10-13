@@ -1,18 +1,10 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/table.css" rel='stylesheet' type='text/css' />
+<div id="tableTitle">
+	<h3>球队管理&gt;&gt;球队信息</h3>
+</div>
+<div id="main_content">
 
-<script id="table_tr_template" type="text/html">
-{{each result as n i}}
-	<tr>
-		<td>{{i+1}}</td>
-		<td>{{n.teamName}}</td>
-		<td>{{n.totalMember}}</td>
-		<td>{{n.teamCreateDate}}</td>
-		<td>{{n.teamPoints}}</td>
-		<td class="operation"><a class="view" href="javascript:void(0);" onclick="TEAM_MANAGE.setTeamInfo({{n.tid}})">查看</a></td>
-	</tr>
-{{/each}}
-</script>
-
+</div>
 <script id="div_teamInfo_template" type="text/html">
 <div class="label_div">
 	<label for="teamName" class="col-sm-2 control-label">球队名称：</label>
@@ -33,3 +25,4 @@
 	</div>
 </div>
 </script>
+<script src="../js/teamManage/teamInfo.js"></script>
