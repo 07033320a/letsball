@@ -21,12 +21,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="乐意动" />
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 <!-- Bootstrap Core CSS -->
-<link href="<%=basePath%>/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>/css/bootstrap.min.css" rel='stylesheet'
+	type='text/css' />
 <!-- Custom CSS -->
-<link href="<%=basePath%>/css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>/css/style.css" rel='stylesheet'
+	type='text/css' />
 <link href="<%=basePath%>/css/font-awesome.css" rel="stylesheet">
 <!-- jQuery -->
 <script src="<%=basePath%>/js/jquery.min.js"></script>
@@ -38,8 +42,10 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<%=basePath%>/js/bootstrap.min.js"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="<%=basePath%>/css/login.css">
-<script type="text/javascript" src="<%=basePath%>/js/jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=basePath%>/css/login.css">
+<script type="text/javascript"
+	src="<%=basePath%>/js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/md5.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/login.js"></script>
 </head>
@@ -51,10 +57,10 @@
 	<h2 class="form-heading">登录</h2>
 	<div class="app-cam">
 		<form>
-			<input type="text" class="text" name="username" value="123"
+			<input type="text" class="text" name="loginName" value="123"
 				onFocus="this.value = '';"
-				onBlur="if (this.value == '') {this.value = 'username';}"> <input
-				type="password" value="123" name="password"
+				onBlur="if (this.value == '') {this.value = 'loginName';}">
+			<input type="password" value="123" name="loginPassword"
 				onFocus="this.value = '';"
 				onBlur="if (this.value == '') {this.value = 'Password';}">
 			<div class="submit">

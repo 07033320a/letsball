@@ -1,12 +1,11 @@
 $(function() {
 	$("#loginBtn").click(function(e) {
 		e.preventDefault();
-		console.log("login");
-		var username = $("input[name=username]").val();
-		var password = hex_md5($("input[name=password]").val());
+		var username = $("input[name=loginName]").val();
+		var password = hex_md5($("input[name=loginPassword]").val());
 		var user = {
-			"uname" : username,
-			"upassword" : password
+			"loginName" : username,
+			"loginPassword" : password
 		};
 		$.ajax({
 			type : "post",

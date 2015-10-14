@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService {
 	public boolean isExist(TUser user) {
 		boolean b = false;
 		TUserExample tUserExample = new TUserExample();
-		tUserExample.createCriteria().andUnameEqualTo(user.getUname());
+		tUserExample.createCriteria().andLoginNameEqualTo(user.getLoginName());
 		int i = tUserMapper.countByExample(tUserExample);
 		if(i > 0) {
 			b = true;
