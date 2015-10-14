@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.letsball.service.impl;
+package com.letsball.utils;
 
 /**
  * @author Administrator
