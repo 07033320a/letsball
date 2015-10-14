@@ -1132,7 +1132,6 @@ h2.modal-title {
 }
 .radio label, .checkbox label, label{
   font-size: 0.85em;
-  font-weight:300;
   vertical-align: middle;
 }
 .checkbox1{
@@ -1870,9 +1869,9 @@ label.round {
 }
 .wid_blog{
 	background:rgb(6, 217, 149);
-	padding-top: 3em;
+	padding-top: 2em;
 	padding-right: 2em;
-	padding-bottom: 8em;
+	padding-bottom: 3em;
     padding-left: 2em;
 }
 .wid_blog h1{

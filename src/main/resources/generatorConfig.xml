@@ -9,7 +9,7 @@
 	<properties resource="config.properties" />
 
 	<classPathEntry
-		location="D:\Develop Tool\maven-repository\repository\mysql\mysql-connector-java\5.1.21\mysql-connector-java-5.1.21.jar" />
+		location="E:\Tools\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />
 	<!-- 一个数据库一个context -->
 	<context id="LETSBALL" targetRuntime="MyBatis3">
 		<!--xml文件是否是覆盖还是合并 -->

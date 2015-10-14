@@ -136,6 +136,10 @@
 }
 
 .label_div {
-	float: left;
 	width: 100%;
+}
+
+.container-fluid {
+	padding-left: 75px;
+	position: relative;
 }

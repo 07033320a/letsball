@@ -2,31 +2,74 @@
 <div id="tableTitle">
 	<h3>球队管理&gt;&gt;球队信息</h3>
 </div>
-<div id="main_content">
-
+<div id="main_content"></div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="tabbable" id="tabs-70012">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#panel-1" data-toggle="tab"
+						onclick="TEAM_MANAGE_INFO.getMemberList('panel-1', '1')">队长</a></li>
+					<li><a href="#panel-2" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-2', '2')">守门员</a></li>
+					<li><a href="#panel-3" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-3', '3')">后卫</a></li>
+					<li><a href="#panel-4" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-4', '4')">中场</a></li>
+					<li><a href="#panel-5" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-5', '5')">前锋</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-1">
+						<ul></ul>
+					</div>
+					<div class="tab-pane" id="panel-2">
+						<ul></ul>
+					</div>
+					<div class="tab-pane" id="panel-3">
+						<ul></ul>
+					</div>
+					<div class="tab-pane" id="panel-4">
+						<ul></ul>
+					</div>
+					<div class="tab-pane" id="panel-5">
+						<ul></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <script id="div_teamInfo_template" type="text/html">
-<div class="col-md-6 widget_1_box2">
+<div class="col-md-12 widget_1_box2">
 	<div class="wid_blog">	
 		<div class="label_div">
 			<label for="teamName" class="col-sm-2 control-label">球队名称：</label>
-			<div class="col-sm-8">
+			<div class="col-sm-2">
 				{{result.teamName}}
 			</div>
 		</div>
 		<div class="label_div">
 			<label for="teamMemberNum" class="col-sm-2 control-label">球队人数：</label>
-			<div class="col-sm-8">
+			<div class="col-sm-2">
 				{{result.totalMember}} 人
 			</div>
 		</div>
 		<div class="label_div">
 			<label for="teamPoints" class="col-sm-2 control-label">球队积分：</label>
-			<div class="col-sm-8">
+			<div class="col-sm-2">
 				{{result.teamPoints}} 分
 			</div>
 		</div>
 	</div>
 </div>		
+</script>
+<script id="ul_memberList_template" type="text/html">
+{{each result as n i}}
+	<li>
+		<label>球员姓名</label>
+		<div>{{n.userName}}</div>
+		<label>加入球队时间</label>
+		<div>{{n.joinDate}}</div>
+		<label>球员缺席次数</label>
+		<div>{{n.memberAbsentTime}}</div>
+	</li>
+{{/each}}		
 </script>
 <script src="../js/teamManage/teamInfo.js"></script>
