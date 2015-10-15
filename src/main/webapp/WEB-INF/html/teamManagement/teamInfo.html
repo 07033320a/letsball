@@ -17,19 +17,19 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-1">
-						<ul></ul>
+						<div class="col-md-11 span_8"></div>
 					</div>
 					<div class="tab-pane" id="panel-2">
-						<ul></ul>
+						<div class="col-md-11 span_8"></div>
 					</div>
 					<div class="tab-pane" id="panel-3">
-						<ul></ul>
+						<div class="col-md-11 span_8"></div>
 					</div>
 					<div class="tab-pane" id="panel-4">
-						<ul></ul>
+						<div class="col-md-11 span_8"></div>
 					</div>
 					<div class="tab-pane" id="panel-5">
-						<ul></ul>
+						<div class="col-md-11 span_8"></div>
 					</div>
 				</div>
 			</div>
@@ -60,16 +60,37 @@
 	</div>
 </div>		
 </script>
-<script id="ul_memberList_template" type="text/html">
+<script id="div_memberList_template" type="text/html">
 {{each result as n i}}
-	<li>
-		<label>球员姓名</label>
-		<div>{{n.userName}}</div>
-		<label>加入球队时间</label>
-		<div>{{n.joinDate}}</div>
-		<label>球员缺席次数</label>
-		<div>{{n.memberAbsentTime}}</div>
-	</li>
+	<div class="activity_box">
+		<div class="scrollbar" id="style-2">
+			<div class="activity-row">
+				<div class="col-xs-1">
+					<i class="fa fa-thumbs-up text-info icon_13"> </i>
+				</div>
+				<div class="col-xs-3 activity-img">
+					<img src='../images/default_pic.jpg' class="img-responsive"
+						alt="" />
+				</div>
+				<div class="col-xs-8 activity-desc">
+					<h5>
+						<label>姓名</label>
+						<div><a href="#">{{n.userName}}</a></div>
+						
+					</h5>
+					<p>
+						<label>缺席场次</label>
+						<div>{{n.memberAbsentTime}}</div>
+					</p>
+					<h6>
+						<label>加入球队时间</label>
+						<div>{{n.joinDate}}</div>
+					</h6>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
 {{/each}}		
 </script>
 <script src="../js/teamManage/teamInfo.js"></script>
