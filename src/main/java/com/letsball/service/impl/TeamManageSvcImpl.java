@@ -128,7 +128,6 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 	 */
 	@Override
 	public List<Map<String, Object>> getMemberList(String tid, String position) {
-		Map<String, Object> map = new HashMap<String, Object>();
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		TTeamFootballMemberExample tTeamFootballMemberExample = new TTeamFootballMemberExample();
 		tTeamFootballMemberExample.createCriteria()
@@ -138,6 +137,7 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 				.selectByExample(tTeamFootballMemberExample);
 		if (ValueUtil.valNotNullAndEmpty(tTeamFootballMemberList)) {
 			for (TTeamFootballMember tTeamFootballMember : tTeamFootballMemberList) {
+				Map<String, Object> map = new HashMap<String, Object>();
 				map.putAll(DataUtils.transBean2Map(tTeamFootballMember));
 				map.put("joinDate", DateUtils.format(tTeamFootballMember.getMemberJoinDate(), DateUtils.FORMAT_SHORT_CN));
 				int id = tTeamFootballMember.getuId();

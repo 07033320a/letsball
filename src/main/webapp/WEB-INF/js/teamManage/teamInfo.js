@@ -37,11 +37,11 @@ TEAM_MANAGE_INFO.getMemberList = function(tabId, position) {
 		async : false,
 		success : function(data) {
 			if(data.result.length == '0') {
-				$("#" + tabId + " div").html("此位置无球员");
+				$("#" + tabId + " div[class='scrollbar']").html("此位置无球员");
 				return false;
 			}
 			var html = template('div_memberList_template', data);
-			$("#" + tabId + " div").html(html);
+			$("#" + tabId + " div[class='scrollbar']").html(html);
 		},
 		error : function() {
 			alert("服务器发生故障，请尝试重新登录！");

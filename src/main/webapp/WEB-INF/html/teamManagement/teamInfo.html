@@ -10,26 +10,50 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#panel-1" data-toggle="tab"
 						onclick="TEAM_MANAGE_INFO.getMemberList('panel-1', '1')">队长</a></li>
-					<li><a href="#panel-2" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-2', '2')">守门员</a></li>
-					<li><a href="#panel-3" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-3', '3')">后卫</a></li>
-					<li><a href="#panel-4" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-4', '4')">中场</a></li>
-					<li><a href="#panel-5" data-toggle="tab" onclick="TEAM_MANAGE_INFO.getMemberList('panel-5', '5')">前锋</a></li>
+					<li><a href="#panel-2" data-toggle="tab"
+						onclick="TEAM_MANAGE_INFO.getMemberList('panel-2', '2')">守门员</a></li>
+					<li><a href="#panel-3" data-toggle="tab"
+						onclick="TEAM_MANAGE_INFO.getMemberList('panel-3', '3')">后卫</a></li>
+					<li><a href="#panel-4" data-toggle="tab"
+						onclick="TEAM_MANAGE_INFO.getMemberList('panel-4', '4')">中场</a></li>
+					<li><a href="#panel-5" data-toggle="tab"
+						onclick="TEAM_MANAGE_INFO.getMemberList('panel-5', '5')">前锋</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-1">
-						<div class="col-md-11 span_8"></div>
+						<div class="col-md-11 span_8">
+							<div class="activity_box">
+								<div class="scrollbar"></div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane" id="panel-2">
-						<div class="col-md-11 span_8"></div>
+						<div class="col-md-11 span_8">
+							<div class="activity_box">
+								<div class="scrollbar"></div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane" id="panel-3">
-						<div class="col-md-11 span_8"></div>
+						<div class="col-md-11 span_8">
+							<div class="activity_box">
+								<div class="scrollbar"></div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane" id="panel-4">
-						<div class="col-md-11 span_8"></div>
+						<div class="col-md-11 span_8">
+							<div class="activity_box">
+								<div class="scrollbar"></div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane" id="panel-5">
-						<div class="col-md-11 span_8"></div>
+						<div class="col-md-11 span_8">
+							<div class="activity_box">
+								<div class="scrollbar"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -62,35 +86,31 @@
 </script>
 <script id="div_memberList_template" type="text/html">
 {{each result as n i}}
-	<div class="activity_box">
-		<div class="scrollbar" id="style-2">
-			<div class="activity-row">
-				<div class="col-xs-1">
-					<i class="fa fa-thumbs-up text-info icon_13"> </i>
-				</div>
-				<div class="col-xs-3 activity-img">
-					<img src='../images/default_pic.jpg' class="img-responsive"
-						alt="" />
-				</div>
-				<div class="col-xs-8 activity-desc">
-					<h5>
-						<label>姓名</label>
-						<div><a href="#">{{n.userName}}</a></div>
-						
-					</h5>
-					<p>
-						<label>缺席场次</label>
-						<div>{{n.memberAbsentTime}}</div>
-					</p>
-					<h6>
-						<label>加入球队时间</label>
-						<div>{{n.joinDate}}</div>
-					</h6>
-				</div>
-				<div class="clearfix"></div>
-			</div>
+	<div class="activity-row">
+		<div class="col-xs-1">
+			<i class="fa fa-thumbs-up text-info icon_13"> </i>
 		</div>
+		<div class="col-xs-3 activity-img">
+			<img src='../images/default_pic.jpg' class="img-responsive"
+				alt="" />
+		</div>
+		<div class="col-xs-8 activity-desc">
+			<h5>
+				<label>姓名</label>
+				<div><a href="#">{{n.userName}}</a></div>
+				
+			</h5>
+			<p>
+				<label>缺席场次</label>
+				<div>{{n.memberAbsentTime}}</div>
+			</p>
+			<h6>
+				<label>加入球队时间</label>
+				<div>{{n.joinDate}}</div>
+			</h6>
+		</div>
+		<div class="clearfix"></div>
 	</div>
-{{/each}}		
+{{/each}}	
 </script>
 <script src="../js/teamManage/teamInfo.js"></script>
