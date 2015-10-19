@@ -7,7 +7,6 @@ $(document).ready(
 			// assuming you've got the appropriate language files,
 			// clndr will respect whatever moment's language is set to.
 			// moment.lang('ru');
-			moment.lang('Zh-cn');
 			moment.locale('Zh-cn', {
 				months : [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月",
 						"九月", "十月", "十一月", "十二月" ],

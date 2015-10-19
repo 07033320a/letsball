@@ -25,6 +25,16 @@ import java.util.Map;
 public class DataUtils {
 
 	/**
+	 * 生成随机九位数
+	 * 
+	 * @return
+	 */
+	public synchronized static int generate9() {
+		int n = (int) (Math.random() * 900000000) + 100000000;
+		return n;
+	}
+
+	/**
 	 * Bean --> Map 1: 利用Introspector和PropertyDescriptor 将Bean 转换成 Map
 	 *
 	 * @param obj

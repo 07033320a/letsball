@@ -11,10 +11,14 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.letsball.entity.TTeamFootball;
 import com.letsball.service.ITeamManageSvc;
 
 /**
@@ -26,6 +30,12 @@ public class TeamManageController {
 
 	@Resource
 	private ITeamManageSvc iTeamManageSvc;
+	
+	
+	@InitBinder("tTeamFootball")    
+    public void initBinder2(WebDataBinder binder) {    
+            binder.setFieldDefaultPrefix("tTeamFootball.");    
+    }
 
 	@ResponseBody
 	@RequestMapping(value = "/getTeamList", method = RequestMethod.POST)
@@ -49,6 +59,14 @@ public class TeamManageController {
 	public Map<String, Object> getMemberList(String tid, String position) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", iTeamManageSvc.getMemberList(tid, position));
+		return resultMap;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/addTeamInfo", method = RequestMethod.POST)
+	public Map<String, Object> addTeamInfo(@ModelAttribute("tTeamFootball") TTeamFootball tTeamFootball) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", iTeamManageSvc.addTeamInfo(tTeamFootball));
 		return resultMap;
 	}
 

@@ -1,4 +1,3 @@
-<link href="../css/table.css" rel='stylesheet' type='text/css' />
 <div id="tableTitle">
 	<h3>球队管理&gt;&gt;球队列表</h3>
 </div>
@@ -10,6 +9,7 @@
 					<th>序号</th>
 					<th>球队名称</th>
 					<th>球队人数</th>
+					<th>球队状态</th>
 					<th>球队创建时间</th>
 					<th>球队积分</th>
 					<th>操作</th>
@@ -27,6 +27,7 @@
 		<td>{{i+1}}</td>
 		<td>{{n.teamName}}</td>
 		<td>{{n.totalMember}}</td>
+		<td>{{n.teamStatus}}</td>
 		<td>{{n.teamCreateDate}}</td>
 		<td>{{n.teamPoints}}</td>
 		<td class="operation"><a class="view" href="javascript:void(0);" onclick="LOAD.loadHTMLParams('page-wrapper', 'teamManagement/teamInfo', {{n.tid}})">查看</a></td>

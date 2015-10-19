@@ -9,6 +9,7 @@
 package com.letsball.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,19 +69,22 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		TTeamFootballExample teamFootballExample = new TTeamFootballExample();
-		teamFootballExample.createCriteria().andDelsignEqualTo(
-				GlobalConst.DEL_SIGN);
-		List<TTeamFootball> tTeamFootballs = teamFootballMapper
-				.selectByExample(teamFootballExample);
+		teamFootballExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN);
+		List<TTeamFootball> tTeamFootballs = teamFootballMapper.selectByExample(teamFootballExample);
 		if (ValueUtil.valNotNullAndEmpty(tTeamFootballs)) {
 			for (TTeamFootball TTeamFootball : tTeamFootballs) {
 				resultMap = DataUtils.transBean2Map(TTeamFootball);
 				int tid = TTeamFootball.getTid();
 				int totalMember = getTeamMemberNum(tid);
-				resultMap.put("teamCreateDate", DateUtils.format(
-						TTeamFootball.getTeamCreateDate(),
-						DateUtils.FORMAT_SHORT_CN));
+				resultMap.put("teamCreateDate",
+						DateUtils.format(TTeamFootball.getTeamCreateDate(), DateUtils.FORMAT_SHORT_CN));
 				resultMap.put("totalMember", totalMember);
+				if(TTeamFootball.getStatus() == GlobalConst.APPROVING_SIGN) {
+					resultMap.put("teamStatus", "审核中");
+				}
+				if(TTeamFootball.getStatus() == GlobalConst.APPROVED_SIGN) {
+					resultMap.put("teamStatus", "审核通过");
+				}
 				list.add(resultMap);
 			}
 		}
@@ -95,10 +99,8 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 	 */
 	private int getTeamMemberNum(int tid) {
 		TTeamFootballMemberExample teamFootballMemberExample = new TTeamFootballMemberExample();
-		teamFootballMemberExample.createCriteria()
-				.andDelsignEqualTo(GlobalConst.DEL_SIGN).andTIdEqualTo(tid);
-		int totalMember = teamFootballMemberMapper
-				.countByExample(teamFootballMemberExample);
+		teamFootballMemberExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN).andTIdEqualTo(tid);
+		int totalMember = teamFootballMemberMapper.countByExample(teamFootballMemberExample);
 		return totalMember;
 	}
 
@@ -111,8 +113,7 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 	 */
 	@Override
 	public Map<String, Object> getTeamInfo(String tID) {
-		TTeamFootball teamFootball = teamFootballMapper
-				.selectByPrimaryKey(Integer.valueOf(tID));
+		TTeamFootball teamFootball = teamFootballMapper.selectByPrimaryKey(Integer.valueOf(tID));
 		Map<String, Object> map = DataUtils.transBean2Map(teamFootball);
 		int totalMember = getTeamMemberNum(Integer.valueOf(tID));
 		map.put("totalMember", totalMember);
@@ -130,8 +131,7 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 	public List<Map<String, Object>> getMemberList(String tid, String position) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		TTeamFootballMemberExample tTeamFootballMemberExample = new TTeamFootballMemberExample();
-		tTeamFootballMemberExample.createCriteria()
-				.andDelsignEqualTo(GlobalConst.DEL_SIGN)
+		tTeamFootballMemberExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN)
 				.andMemberPositionEqualTo(position).andTIdEqualTo(Integer.valueOf(tid));
 		List<TTeamFootballMember> tTeamFootballMemberList = teamFootballMemberMapper
 				.selectByExample(tTeamFootballMemberExample);
@@ -139,12 +139,11 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 			for (TTeamFootballMember tTeamFootballMember : tTeamFootballMemberList) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.putAll(DataUtils.transBean2Map(tTeamFootballMember));
-				map.put("joinDate", DateUtils.format(tTeamFootballMember.getMemberJoinDate(), DateUtils.FORMAT_SHORT_CN));
+				map.put("joinDate",
+						DateUtils.format(tTeamFootballMember.getMemberJoinDate(), DateUtils.FORMAT_SHORT_CN));
 				int id = tTeamFootballMember.getuId();
 				TUserExample tUserExample = new TUserExample();
-				tUserExample.createCriteria()
-						.andDelsignEqualTo(GlobalConst.DEL_SIGN)
-						.andIdEqualTo(id);
+				tUserExample.createCriteria().andDelsignEqualTo(GlobalConst.DEL_SIGN).andIdEqualTo(id);
 				List<TUser> tuList = tUserMapper.selectByExample(tUserExample);
 				if (ValueUtil.valNotNullAndEmpty(tuList)) {
 					map.put("userName", tuList.get(0).getUserName());
@@ -153,6 +152,34 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * 球队注册
+	 *
+	 * @param team
+	 * @return
+	 * @see com.letsball.service.ITeamManageSvc#addTeamInfo(com.letsball.entity.TTeamFootball)
+	 */
+	@Override
+	public int addTeamInfo(TTeamFootball tTeamFootball) {
+		
+		tTeamFootball.setTid(DataUtils.generate9());
+		tTeamFootball.setDelsign(GlobalConst.DEL_SIGN);
+		tTeamFootball.setTeamCreateDate(new Date());
+		tTeamFootball.setStatus(0);
+		tTeamFootball.setTeamPoints(0);
+		
+		TTeamFootballMember tTeamFootballMember = new TTeamFootballMember();
+		tTeamFootballMember.setTmId(DataUtils.generate9());
+		tTeamFootballMember.setDelsign(GlobalConst.DEL_SIGN);
+		tTeamFootballMember.setMemberJoinDate(new Date());
+		tTeamFootballMember.setMemberPosition("1");
+		tTeamFootballMember.settId(tTeamFootball.getTid());
+		tTeamFootballMember.setuId(tTeamFootball.getTeamCaptain());
+		teamFootballMemberMapper.insert(tTeamFootballMember);
+		
+		return teamFootballMapper.insert(tTeamFootball);
 	}
 
 }

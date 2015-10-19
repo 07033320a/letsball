@@ -11,6 +11,8 @@ package com.letsball.service;
 import java.util.List;
 import java.util.Map;
 
+import com.letsball.entity.TTeamFootball;
+
 /**
  * @ClassName: ITeamManageSvc
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -43,4 +45,12 @@ public interface ITeamManageSvc {
 	 * @return
 	 */
 	public List<Map<String, Object>> getMemberList(String tid, String position);
+
+	/**
+	 * 球队注册
+	 * 
+	 * @param tTeamFootball
+	 * @return
+	 */
+	public int addTeamInfo(TTeamFootball tTeamFootball);
 }
