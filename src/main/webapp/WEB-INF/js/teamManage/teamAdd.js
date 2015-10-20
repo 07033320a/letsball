@@ -4,7 +4,6 @@ var TEAM_MANAGE_ADD = {};
 
 TEAM_MANAGE_ADD.add = function() {
 	var form = $("#teamAddForm");
-	console.log(form.serialize());
 	$.ajax({
 		type : "post",
 		data : form.serialize(),
@@ -14,7 +13,7 @@ TEAM_MANAGE_ADD.add = function() {
 		async : false,
 		success : function(data) {
 			if (data.result == '1') {
-				$("#teamAddDialog").dialog("open");
+				$("#teamAddDialogBtn").click();
 			}
 		},
 		error : function() {
@@ -24,14 +23,4 @@ TEAM_MANAGE_ADD.add = function() {
 };
 
 $(document).ready(function() {
-	$("#teamAddDialog").dialog({
-		autoOpen: false,
-		modal : true,
-		buttons : {
-			Ok : function() {
-				$(this).dialog("close");
-				LOAD.loadHTML('page-wrapper', 'teamManagement/teamList');
-			}
-		}
-	});
 });
