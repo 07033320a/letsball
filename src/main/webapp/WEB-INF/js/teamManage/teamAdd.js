@@ -14,6 +14,10 @@ TEAM_MANAGE_ADD.add = function() {
 		success : function(data) {
 			if (data.result == '1') {
 				$("#teamAddDialogBtn").click();
+				$('#teamAddDialog').on('hide.bs.modal', function() {
+					$(".modal-backdrop").remove();
+					LOAD.loadHTML('page-wrapper', 'teamManagement/teamList');
+				})
 			}
 		},
 		error : function() {

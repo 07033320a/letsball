@@ -165,6 +165,7 @@ public class TeamManageSvcImpl implements ITeamManageSvc {
 	public int addTeamInfo(TTeamFootball tTeamFootball) {
 		
 		tTeamFootball.setTid(DataUtils.generate9());
+		tTeamFootball.setTeamCaptain(DataUtils.generate9());
 		tTeamFootball.setDelsign(GlobalConst.DEL_SIGN);
 		tTeamFootball.setTeamCreateDate(new Date());
 		tTeamFootball.setStatus(0);
