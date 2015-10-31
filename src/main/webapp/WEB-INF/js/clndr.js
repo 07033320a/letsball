@@ -223,8 +223,8 @@
 								}).toArray();
 
 				if (this.options.showAdjacentMonths) {
-					var lastMonth = currentMonth.clone().subtract('months', 1);
-					var nextMonth = currentMonth.clone().add('months', 1);
+					var lastMonth = currentMonth.clone().subtract(1, 'months');
+					var nextMonth = currentMonth.clone().add(1, 'months');
 					this.eventsLastMonth = $(this.options.events).filter(
 							function() {
 								return this._clndrStartDateObject
@@ -260,8 +260,8 @@
 
 				// filter the adjacent months as well, if the option is true
 				if (this.options.showAdjacentMonths) {
-					var lastMonth = currentMonth.clone().subtract('months', 1);
-					var nextMonth = currentMonth.clone().add('months', 1);
+					var lastMonth = currentMonth.clone().subtract(1, 'months');
+					var nextMonth = currentMonth.clone().add(1, 'months');
 					this.eventsLastMonth = $(this.options.events)
 							.filter(
 									function() {
@@ -368,8 +368,8 @@
 		if (dateList != undefined && dateList.length != 0) {
 			for (var i = 0, l = dateList.length; i < l; i++) {
 				if (day.format("YYYY-MM-DD") == dateList[i]
-						&& extraClasses.indexOf("today") == -1) {
-					extraClasses += " today";
+						&& extraClasses.indexOf("matchDay") == -1) {
+					extraClasses += " matchDay";
 				}
 			}
 		}
@@ -484,16 +484,16 @@
 			}
 			// what's last year looking like?
 			if (start
-					&& moment(start).subtract('years', 1).isBefore(
-							moment(this.month).subtract('years', 1))) {
+					&& moment(start).subtract(1, 'years').isBefore(
+							moment(this.month).subtract(1, 'years'))) {
 				this.element
 						.find('.' + this.options.targets.previousYearButton)
 						.toggleClass('inactive', true);
 			}
 			// how about next year?
 			if (end
-					&& moment(end).add('years', 1).isAfter(
-							moment(this.month).add('years', 1))) {
+					&& moment(end).add(1, 'years').isAfter(
+							moment(this.month).add(1, 'years'))) {
 				this.element.find('.' + this.options.targets.nextYearButton)
 						.toggleClass('inactive', true);
 			}
@@ -653,9 +653,8 @@
 		}
 
 		// is subtracting one month going to switch the year?
-		var yearChanged = !self.month.isSame(moment(self.month).subtract(
-				'months', 1), 'year');
-		self.month.subtract('months', 1);
+		var yearChanged = !self.month.isSame(moment(self.month).subtract(1, 'months'), 'year');
+		self.month.subtract(1, 'months');
 
 		self.render();
 
@@ -685,8 +684,8 @@
 
 		// is adding one month going to switch the year?
 		var yearChanged = !self.month.isSame(moment(self.month)
-				.add('months', 1), 'year');
-		self.month.add('months', 1);
+				.add(1, 'months'), 'year');
+		self.month.add(1, 'months');
 
 		self.render();
 
@@ -749,7 +748,7 @@
 			return;
 		}
 
-		self.month.add('years', 1);
+		self.month.add(1, 'years');
 		self.render();
 
 		if (self.options.clickEvents.nextYear) {
@@ -775,7 +774,7 @@
 			return;
 		}
 
-		self.month.subtract('years', 1);
+		self.month.subtract(1, 'years');
 		self.render();
 
 		if (self.options.clickEvents.previousYear) {
@@ -793,7 +792,7 @@
 	};
 
 	Clndr.prototype.forward = function(options) {
-		this.month.add('months', 1);
+		this.month.add(1, 'months');
 		this.render();
 		if (options && options.withCallbacks) {
 			if (this.options.clickEvents.onMonthChange) {
@@ -813,7 +812,7 @@
 	}
 
 	Clndr.prototype.back = function(options) {
-		this.month.subtract('months', 1);
+		this.month.subtract(1, 'months');
 		this.render();
 		if (options && options.withCallbacks) {
 			if (this.options.clickEvents.onMonthChange) {
@@ -857,7 +856,7 @@
 	}
 
 	Clndr.prototype.nextYear = function(options) {
-		this.month.add('year', 1);
+		this.month.add(1, 'years');
 		this.render();
 		if (options && options.withCallbacks) {
 			if (this.options.clickEvents.onYearChange) {
@@ -869,7 +868,7 @@
 	}
 
 	Clndr.prototype.previousYear = function(options) {
-		this.month.subtract('year', 1);
+		this.month.subtract(1, 'years');
 		this.render();
 		if (options && options.withCallbacks) {
 			if (this.options.clickEvents.onYearChange) {
@@ -925,6 +924,8 @@
 			// stuff a _clndrDateObject in each event, which really, REALLY should not be
 			// overriding any existing object... Man that would be weird.
 			events[i]._clndrDateObject = moment(events[i][self.options.dateParameter]);
+		      events[i]._clndrStartDateObject = moment( events[i][self.options.dateParameter] );
+		      events[i]._clndrEndDateObject = moment( events[i][self.options.dateParameter] );
 		}
 		return events;
 	}

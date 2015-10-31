@@ -1,0 +1,86 @@
+<div id="tableTitle">
+	<h3>球队管理&gt;&gt;球队注册</h3>
+</div>
+<div class="graphs">
+	<div class="xs">
+		<div class="tab-content">
+			<div class="tab-pane active" id="horizontal-form">
+				<form class="form-horizontal" id="teamAddForm">
+					<div class="form-group">
+						<label for="teamName" class="col-sm-2 control-label">球队名称</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control1" id="teamName" placeholder="" name="tTeamFootball.teamName">
+						</div>
+						<div class="col-sm-2">
+							<p class="help-block">球队名称!</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="teamCity" class="col-sm-2 control-label">球队所在</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control1" id="teamCity" placeholder="辽宁省大连市高新园区腾飞二期" value="辽宁省大连市高新园区腾飞二期"
+								name="tTeamFootball.teamCity">
+						</div>
+						<div class="col-sm-2">
+							<p class="help-block">球队所在具体地址!</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="teamBrief" class="col-sm-2 control-label">球队简介</label>
+						<div class="col-sm-8">
+							<textarea rows="6" class="form-control1 control2" id="teamBrief" name="tTeamFootball.teamBrief">为了更美好的明天</textarea>
+						</div>
+						<div class="col-sm-2">
+							<p class="help-block">球队简介!</p>
+						</div>
+					</div>
+					<!-- <div class="form-group">
+						<label for="teamCaptain" class="col-sm-2 control-label">球队队长</label>
+						<div class="col-sm-8">
+							<select name="tTeamFootball.teamCaptain" id="teamCaptain" class="form-control1">
+								<option value="1">123</option>
+								<option value="2">test</option>
+								<option value="3">rex</option>
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<p class="help-block">球队队长!</p>
+						</div>
+					</div> -->
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-sm-8 col-sm-offset-2">
+								<div class="btn-success btn" onclick="TEAM_MANAGE_ADD.add();">提交</div>
+								<div class="btn-default btn">取消</div>
+								<div class="btn-inverse btn">重置</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<button type="button" id="teamAddDialogBtn" class="btn btn-primary btn-lg display_none" data-toggle="modal"
+		data-target="#teamAddDialog"></button>
+	<div class="modal fade" id="teamAddDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					<h2 class="modal-title">添加注册信息提示</h2>
+				</div>
+				<div class="modal-body">
+					<p>球队注册信息添加成功，请等待管理员审核</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</div>
+<script src="../js/teamManage/teamAdd.js"></script>
